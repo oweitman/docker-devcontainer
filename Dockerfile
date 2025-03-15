@@ -1,9 +1,6 @@
 # 1. Basis: Debian Bookworm
 FROM debian:bookworm
 
-LABEL org.opencontainers.image.title="ioBroker Docker Devcontainer" \
-      org.opencontainers.image.authors="oweitman <oweitman@gmx.de>"
-
 # Keine interaktiven Abfragen während apt-get install
 ENV DEBIAN_FRONTEND=noninteractive
 
