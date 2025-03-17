@@ -56,10 +56,10 @@ services:
       - "8081:8081"
       - "8082:8082"
     volumes:
-      - /<path>/devcontainer/ssh:/home/dev/sshfiles
-      - /<path>/devcontainer/projects:/home/dev/projects
-      - /<path>/devcontainer/npm-global:/home/dev/.npm-global
-      - /<path>/devcontainer/vscode-server:/home/dev/.vscode-server
+      - /<localpath>/devcontainer/ssh:/home/dev/sshfiles
+      - /<localpath>/devcontainer/projects:/home/dev/projects
+      - /<localpath>/devcontainer/npm-global:/home/dev/.npm-global
+      - /<localpath>/devcontainer/vscode-server:/home/dev/.vscode-server
 ```
 
 ## setup ssh keys
@@ -70,7 +70,7 @@ Run the following command on the command line to generate a private and public k
 ssh-keygen
 ```
 
-After that, the files are located in the directory C:\Users\.ssh\
+After that, the files are located in the directory C:\Users\.ssh\ (windows) or /home/user/.ssh (Linux)
 
 - id_rsa
 - id_rsa.pub
@@ -100,4 +100,4 @@ Host 192.168.1.123:2222
 
 6. Start the connection with \<CTRL\>+\<Shift+P\> Remote-SSH: Connect to Host
 7. Once the connection is successful, you can then select the appropriate folder and execute all commands remotely via the terminal.
-8. A typical next action would be either cloning a github repository or creating and initializing a new repository
+8. A typical next action would be either cloning a github repository or creating and initializing a new repository below the projects directory.
