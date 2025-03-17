@@ -4,7 +4,7 @@ The goal of the devcontainer is to create an encapsulated container for adapter 
 
 ## dockerfile
 
-A Bullseye node image is used as the base image. Other base images can be used. See the tag list at <https://hub.docker.com/_/node>.
+A Bullseye node 20 image is used as the base image. Other base images can be used. See the tag list at <https://hub.docker.com/_/node>.
 
 In the Dockerfile, an openssh server is first installed and a user named dev is created in the dev group.
 
@@ -83,13 +83,11 @@ ssh-rsa AAAAB3NzaC...iSvEKQ== user@computer
 
 ## Connect vscode to the devcontainer
 
-[text](https://)
-
-1. Install the Extension "[Remote - SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)" in vscode
-2. Configure the Connection: \<CTRL\>+\<Shift+P\> Remote-SSH: Add New SSH Host
-3. Enter the connection address of the remote container, e.g. dev@\<IP\>
-4. If the ssh port has been mapped to another one like 22, you should add :\<port\> here
-5. Please check the generated configuration file to ensure that the values ​​HostName, Port and User correspond to the correct values, according to the following scheme:
+- Install the Extension "[Remote - SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)" in vscode
+- Configure the Connection: \<CTRL\>+\<Shift+P\> Remote-SSH: Add New SSH Host
+- Enter the connection address of the remote container, e.g. dev@\<IP\>
+- If the ssh port has been mapped to another one like 22, you should add :\<port\> here
+- Please check the generated configuration file to ensure that the values ​​HostName, Port and User correspond to the correct values, according to the following scheme:
 
 ```bash
 Host 192.168.1.123:2222
@@ -98,6 +96,6 @@ Host 192.168.1.123:2222
   User dev
 ```
 
-6. Start the connection with \<CTRL\>+\<Shift+P\> Remote-SSH: Connect to Host
-7. Once the connection is successful, you can then select the appropriate folder and execute all commands remotely via the terminal.
-8. A typical next action would be either cloning a github repository or creating and initializing a new repository below the projects directory.
+- Start the connection with \<CTRL\>+\<Shift+P\> Remote-SSH: Connect to Host
+- Once the connection is successful, you can then select the appropriate folder and execute all commands remotely via the terminal.
+- A typical next action would be either cloning a github repository or creating and initializing a new repository below the projects directory.
