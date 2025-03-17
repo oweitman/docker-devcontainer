@@ -166,6 +166,7 @@ todo
 
 - launch vis with the following launch configuration via menu/run/start debugging or F5.
 - if vscode didnt automatically recognize the port 8082, you have to map it manually in the port view of vscode
+- if vis isnt installed in iobroker you have to add it via the gui
 
 ```json
         {
