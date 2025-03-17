@@ -18,6 +18,12 @@ Furthermore, various other directories are created in the user directory so that
 - projects: Root directory for all project directories and repositories
 - .vscode-server: vscode server in the container, which maintains contact with the vscode instance of the development computer.
 
+> **Anmerkung**
+>
+> Theoretically, the setup should also work with an LXC container or VM in a similar configuration. This cannot currently be tested.
+>
+> Feedback is appreciated
+
 ## entrypoint.sh
 
 In the start script entrypoint.sh, which is executed every time the container is started, the ssh key file is copied to the correct location and the ssh server is started.
@@ -99,3 +105,80 @@ Host 192.168.1.123:2222
 - Start the connection with \<CTRL\>+\<Shift+P\> Remote-SSH: Connect to Host
 - Once the connection is successful, you can then select the appropriate folder and execute all commands remotely via the terminal.
 - A typical next action would be either cloning a github repository or creating and initializing a new repository below the projects directory.
+
+## Debugging
+
+### Common for all debugging variants
+
+- dev-server setup according to the documentation
+- start the dev-server in watch mode without the adapter with the following command
+- vscode map automaticly the port 8081 to your local machine and you can open iobroker in your browser with the following link http://127.0.0.1:8081
+
+```bash
+dev-server watch --noStart
+```
+
+### Debug JS Adapters
+
+- launch the adapter with the following launch configuration via menu/run/start debugging or F5. To test the debugging the option "stopOnEntry" is set to true
+
+```json
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "default Launch ioBroker Adapter ",
+            "skipFiles": ["<node_internals>/**"],
+            "args": ["--debug", "0"],
+            "program": "node_modules/iobroker.<adaptername>/main.js",
+            "cwd": "${workspaceFolder}/.dev-server/default",
+            "stopOnEntry": true,
+            "sourceMaps": true,
+            "console": "internalConsole",
+            "outputCapture": "std",
+            "resolveSourceMapLocations": ["${workspaceFolder}/**", "**/node_modules/**"]
+        },
+```
+
+- the process should stop at the first line of the adapter and the debugging can be started.
+- if you change the adapter code, simply restart the debugging process.
+
+### Debug admin JSONconfig
+
+todo
+
+### Debug admin JSONconfig with custom react components
+
+todo
+
+### Debug admin materialize
+
+todo
+
+### Debug tab materialize
+
+todo
+
+### Debug tab react
+
+todo
+
+### Debug JS Widgets in vis
+
+- launch vis with the following launch configuration via menu/run/start debugging or F5.
+- if vscode didnt automatically recognize the port 8082, you have to map it manually in the port view of vscode
+
+```json
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "vis edit",
+            "url": "http://127.0.0.1:8082/vis/edit.html#test",
+            "webRoot": "${workspaceFolder}",
+            "trace": true,
+            "skipFiles": ["socket.io.js"]
+        },
+```
+
+### Debug JS React Widgets in vis-2
+
+todo
